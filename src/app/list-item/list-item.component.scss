@@ -1,0 +1,17 @@
+.todo-list-item {
+  padding: 10px;
+
+  .completed {
+    text-decoration: line-through;
+  }
+
+  .todo-list-item-title {
+    padding-left: 10px;
+  }
+}
+
+:host.selected {
+ .todo-list-item {
+    background: lightpink;
+  }
+}
