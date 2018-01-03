@@ -16,10 +16,11 @@ export class TodosService {
   addItem(title) {
     const newItem = {
       title,
-      id: this.todos.length
+      id: this.todos.length + 1
     };
 
-    this.todos.push(newItem);
+    // this.todos.push(newItem);
+    return this.todos = [...this.todos, newItem ];
   }
 
 }

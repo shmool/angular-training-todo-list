@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TodosService } from '../todos.service';
 
 @Component({
   selector: 'app-todo-app',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <h3>My Todo List</h3>
 
@@ -26,6 +27,7 @@ import { TodosService } from '../todos.service';
 export class TodoAppComponent implements OnInit {
   todos;
   displayedItem;
+  color = 'red';
 
   constructor(private todosService: TodosService) {
   }
@@ -39,7 +41,7 @@ export class TodoAppComponent implements OnInit {
   }
 
   createItem(title) {
-    this.todosService.addItem(title);
+    this.todos = this.todosService.addItem(title);
   }
 
 }

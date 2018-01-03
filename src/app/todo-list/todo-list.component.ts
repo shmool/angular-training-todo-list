@@ -4,7 +4,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   selector: 'app-todo-list',
   template: `
     <ul class="list-unstyled todo-list">
-      <li *ngFor="let item of list">
+      <li *ngFor="let item of list; trackBy: bar">
         <app-list-item [item]="item"
                        (selected)="selectItem(item)"
                        [ngClass]="{selected: selectedItem === item}">
@@ -21,7 +21,12 @@ export class TodoListComponent implements OnInit {
 
   constructor() {
   }
+
   ngOnInit() {
+  }
+
+  bar(item) {
+    return item.id;
   }
 
   selectItem(item) {
