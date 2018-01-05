@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-todo-item',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div *ngIf="item; else noItemSelected">
       <h3>{{ item.title }}</h3>

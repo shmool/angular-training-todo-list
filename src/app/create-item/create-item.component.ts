@@ -8,8 +8,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
         <input class="form-control"
                placeholder="new todo item"
                #newTodoInput
-               (keyup.enter)="foo(newTodoInput, $event)">
-        <button class="btn btn-success" (click)="foo(newTodoInput, $event)">Add</button>
+               (keyup.enter)="onSubmit(newTodoInput)">
+        <button class="btn btn-success" (click)="onSubmit(newTodoInput)">Add</button>
       </div>
     </div>
   `,
@@ -24,8 +24,7 @@ export class CreateItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  foo(input, e) {
-    console.log(e, this)
+  onSubmit(input) {
     this.newItem.emit(input.value);
     input.value = '';
   }
