@@ -11,12 +11,14 @@ import { TodosService } from '../todos.service';
 
         <app-create-item (newItem)="createItem($event)"></app-create-item>
 
-        <app-todo-list [list]="todos" (selected)="selectItem($event)"></app-todo-list>
+        <app-todo-list [list]="todos"
+                       (selected)="selectItem($event)"
+                       (completed)="setItemCompleted($event)"></app-todo-list>
 
       </div>
       <div class="col-xs-6">
 
-        <app-todo-item [item]="displayedItem"></app-todo-item>
+        <app-todo-item-details [item]="displayedItem"></app-todo-item-details>
 
       </div>
     </div>
@@ -40,6 +42,10 @@ export class TodoAppComponent implements OnInit {
 
   createItem(title) {
     this.todosService.addItem(title);
+  }
+
+  setItemCompleted({ item, completed }) {
+    this.todosService.updateItem(item, { completed });
   }
 
 }

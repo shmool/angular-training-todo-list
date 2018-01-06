@@ -8,7 +8,7 @@ import { TodoAppComponent } from './todo-app/todo-app.component';
 import { CreateItemComponent } from './create-item/create-item.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { ListItemComponent } from './list-item/list-item.component';
-import { TodoItemComponent } from './todo-item/todo-item.component';
+import { TodoItemDetailsComponent } from './todo-item-details/todo-item-details.component';
 import { TodosService } from './todos.service';
 
 
@@ -19,7 +19,7 @@ import { TodosService } from './todos.service';
     CreateItemComponent,
     TodoListComponent,
     ListItemComponent,
-    TodoItemComponent
+    TodoItemDetailsComponent
   ],
   imports: [
     BrowserModule,

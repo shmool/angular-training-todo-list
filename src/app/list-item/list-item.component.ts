@@ -20,6 +20,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class ListItemComponent implements OnInit {
   @Input() item;
   @Output() selected = new EventEmitter();
+  @Output() completed = new EventEmitter();
 
   constructor() {
   }
@@ -28,7 +29,7 @@ export class ListItemComponent implements OnInit {
   }
 
   toggleCompleted(e) {
-    this.item.completed = e.target.checked;
+    this.completed.emit(e.target.checked);
   }
 
   selectItem(item) {

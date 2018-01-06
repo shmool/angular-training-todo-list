@@ -16,10 +16,14 @@ export class TodosService {
   addItem(title) {
     const newItem = {
       title,
-      id: this.todos.length
+      id: this.todos.length + 1
     };
 
     this.todos.push(newItem);
+  }
+
+  updateItem(item, changes) {
+    Object.assign(item, changes);
   }
 
 }

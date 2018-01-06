@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-todo-item',
+  selector: 'app-todo-item-details',
   template: `
     <div *ngIf="item; else noItemSelected">
       <h3>{{ item.title }}</h3>
@@ -13,9 +13,9 @@ import { Component, Input, OnInit } from '@angular/core';
       <h3>Please select an item to display</h3>
     </ng-template>
   `,
-  styleUrls: ['./todo-item.component.scss']
+  styleUrls: ['./todo-item-details.component.scss']
 })
-export class TodoItemComponent implements OnInit {
+export class TodoItemDetailsComponent implements OnInit {
   @Input() item;
 
   constructor() {
