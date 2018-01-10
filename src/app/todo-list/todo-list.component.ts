@@ -8,7 +8,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
         <app-list-item [item]="item"
                        (selected)="selectItem(item)"
                        (completed)="setItemCompleted(item, $event)"
-                       [ngClass]="{selected: selectedItem === item}">
+                       (remove)="removeItem(item)"
+                       [ngClass]="{selected: selectedItemId === item.id}">
         </app-list-item>
       </li>
     </ul>
@@ -17,22 +18,27 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TodoListComponent implements OnInit {
   @Input() list;
+  @Input() selectedItemId;
   @Output() selected = new EventEmitter();
   @Output() completed = new EventEmitter();
-  selectedItem;
+  @Output() removed = new EventEmitter();
 
   constructor() {
   }
+
   ngOnInit() {
   }
 
   selectItem(item) {
-    this.selectedItem = item;
     this.selected.emit(item);
   }
 
   setItemCompleted(item, completed) {
-    this.completed.emit({item, completed});
+    this.completed.emit({ item, completed });
+  }
+
+  removeItem(item) {
+    this.removed.emit(item);
   }
 
 }

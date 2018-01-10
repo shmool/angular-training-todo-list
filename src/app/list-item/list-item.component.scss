@@ -8,6 +8,17 @@
   .todo-list-item-title {
     padding-left: 10px;
   }
+
+  .delete-icon {
+    display: none;
+    color: red;
+  }
+
+  &:hover {
+    .delete-icon {
+      display: inline-block;
+    }
+  }
 }
 
 :host.selected {

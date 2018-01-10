@@ -1,29 +1,49 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { environment } from '../environments/environment';
+
+export interface TodoItem {
+  id?: string;
+  title: string;
+  completed?: boolean;
+}
 
 @Injectable()
 export class TodosService {
-  todos = [
-    { id: 0, title: 'add Bootstrap', completed: true },
-    { id: 1, title: 'create service', completed: true },
-    { id: 3, title: 'create components' },
-    { id: 4, title: 'use Input()' },
-    { id: 5, title: 'use *ngFor' }
-  ];
 
-  constructor() {
+  constructor(private http: HttpClient) {
+  }
+
+  getList() {
+    return this.http.get<{ string: TodoItem }>(`${environment.url}.json`).pipe(
+      map(res => {
+        return res ? Object.keys(res).map(id => ({ id, ...res[id] })) : null;
+      })
+    );
   }
 
   addItem(title) {
     const newItem = {
       title,
-      id: this.todos.length + 1
+      completed: false
     };
 
-    this.todos.push(newItem);
+    return this.http.post(`${environment.url}.json`, newItem);
   }
 
-  updateItem(item, changes) {
-    Object.assign(item, changes);
+  updateItem(id, changes) {
+    return this.http.patch(`${environment.url}/${id}.json`, changes);
+  }
+
+  getItem(id) {
+    return this.http.get<TodoItem>(`${environment.url}/${id}.json`).pipe(
+      map(res => res ? ({ id, ...res }) : null)
+    );
+  }
+
+  deleteItem(id) {
+    return this.http.delete(`${environment.url}/${id}.json`);
   }
 
 }

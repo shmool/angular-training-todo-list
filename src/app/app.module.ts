@@ -10,6 +10,7 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { ListItemComponent } from './list-item/list-item.component';
 import { TodoItemDetailsComponent } from './todo-item-details/todo-item-details.component';
 import { TodosService } from './todos.service';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { TodosService } from './todos.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [TodosService],
