@@ -1,38 +1,44 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-item',
   template: `
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
 
       <div id="todo-details-group">
         <div class="form-group">
           <label>Title:
-            <input class="form-control" name="title" [ngModel]="item.title" required>
+            <input class="form-control" formControlName="title">
           </label>
         </div>
         <div class="form-group">
           <label>Description:
-            <textarea class="form-control" name="description" [ngModel]="item.description"></textarea>
+            <textarea class="form-control" formControlName="description"></textarea>
           </label>
         </div>
       </div>
 
       <div class="form-group">
         <label>Due Date:
-          <input type="date" class="form-control" name="dueDate" [ngModel]="item.dueDate">
+          <input type="date" class="form-control" formControlName="dueDate">
         </label>
       </div>
 
-      <button class="btn btn-success" [disabled]="!f.valid">Submit</button>
+      <button class="btn btn-success" [disabled]="!todoForm.valid">Submit</button>
       <button class="btn btn-warning" type="reset">Reset</button>
     </form>
   `,
   styleUrls: ['./edit-item.component.scss']
 })
 export class EditItemComponent implements OnInit {
-  @Input() item;
+  @Input()
+  set item(value) {
+    this.createForm(value);
+  };
+
   @Output() submitForm = new EventEmitter();
+  todoForm;
 
   constructor() {
   }
@@ -40,8 +46,16 @@ export class EditItemComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(form) {
-    this.submitForm.emit(form.value);
+  createForm(item) {
+    this.todoForm = new FormGroup({
+      title: new FormControl(item.title, Validators.required),
+      description: new FormControl(item.description),
+      dueDate: new FormControl(item.dueDate),
+    });
+  }
+
+  onSubmit() {
+    this.submitForm.emit(this.todoForm.value);
   }
 
 }

@@ -8,13 +8,13 @@ import { CreateItemComponent } from './components/create-item/create-item.compon
 import { TodoAppComponent } from './containers/todo-app/todo-app.component';
 import { TodoAppRoutingModule } from './todo-app-routing.module';
 import { TodosService } from './services/todos.service';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     TodoAppRoutingModule
   ],
   declarations: [
