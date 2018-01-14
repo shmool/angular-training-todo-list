@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TodosService } from '../../services/todos.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-todo-app',
@@ -11,7 +12,7 @@ import { TodosService } from '../../services/todos.service';
 
         <app-create-item (newItem)="createItem($event)"></app-create-item>
 
-        <app-todo-list [list]="todos"
+        <app-todo-list [list]="todos$ | async"
                        (completed)="setItemCompleted($event)"
                        (removed)="deleteItem($event)">
         </app-todo-list>
@@ -27,50 +28,35 @@ import { TodosService } from '../../services/todos.service';
   styleUrls: ['./todo-app.component.scss']
 })
 export class TodoAppComponent implements OnInit {
-  todos;
-  displayedItem;
+  todos$;
 
-  constructor(private todosService: TodosService) {
-  }
-
-  getList() {
-    this.todosService.getList()
-      .subscribe(
-        list => this.todos = list,
-        err => console.log('error fetching todo list', err));
+  constructor(
+    private todosService: TodosService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.getList();
+    this.todos$ = this.todosService.getList();
   }
 
   createItem(title) {
     this.todosService.addItem(title)
-      .subscribe((res) => {
-        this.getList();
-      });
+      .subscribe();
   }
 
   setItemCompleted({ item, completed }) {
     this.todosService.updateItem(item.id, { completed })
-      .subscribe((res) => {
-        this.getList();
-        this.updateDisplayedItem(item.id);
-      });
+      .subscribe();
   }
 
   deleteItem(item) {
     this.todosService.deleteItem(item.id)
       .subscribe((res) => {
-        this.getList();
-        this.updateDisplayedItem(item.id);
+        if (this.activatedRoute.snapshot.children[0].params['id'] === item.id) {
+          this.router.navigate(['./']);
+        }
       });
-  }
-
-  updateDisplayedItem(id) {
-    if (this.displayedItem && this.displayedItem.id === id) {
-      // this.selectItem(id);
-    }
   }
 
 }
