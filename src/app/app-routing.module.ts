@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TodoAppComponent } from './todo-app/todo-app.component';
-import { NoItemSelectedComponent } from './no-item-selected/no-item-selected.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { TodoItemDetailsComponent } from './todo-item-details/todo-item-details.component';
+import { TodoAppComponent } from './features/todo-app/containers/todo-app/todo-app.component';
+import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found.component';
+import { NoItemSelectedComponent } from './features/todo-app/containers/no-item-selected/no-item-selected.component';
+import { TodoItemDetailsComponent } from './features/todo-app/containers/todo-item-details/todo-item-details.component';
 
 const routes: Routes = [
   {

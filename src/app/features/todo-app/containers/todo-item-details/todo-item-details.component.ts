@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { TodosService } from '../todos.service';
+import { TodosService } from '../../services/todos.service';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
