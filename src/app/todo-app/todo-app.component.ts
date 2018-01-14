@@ -12,8 +12,6 @@ import { TodosService } from '../todos.service';
         <app-create-item (newItem)="createItem($event)"></app-create-item>
 
         <app-todo-list [list]="todos"
-                       [selectedItemId]="displayedItem?.id"
-                       (selected)="selectItem($event.id)"
                        (completed)="setItemCompleted($event)"
                        (removed)="deleteItem($event)">
         </app-todo-list>
@@ -21,7 +19,7 @@ import { TodosService } from '../todos.service';
       </div>
       <div class="col-xs-6">
 
-        <app-todo-item-details [item]="displayedItem"></app-todo-item-details>
+        <router-outlet></router-outlet>
 
       </div>
     </div>
@@ -44,13 +42,6 @@ export class TodoAppComponent implements OnInit {
 
   ngOnInit() {
     this.getList();
-  }
-
-  selectItem(id) {
-    this.todosService.getItem(id)
-      .subscribe(
-        item => this.displayedItem = item,
-        err => console.log('error fetching item', err));
   }
 
   createItem(title) {
@@ -78,7 +69,7 @@ export class TodoAppComponent implements OnInit {
 
   updateDisplayedItem(id) {
     if (this.displayedItem && this.displayedItem.id === id) {
-      this.selectItem(id);
+      // this.selectItem(id);
     }
   }
 

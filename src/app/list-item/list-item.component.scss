@@ -1,6 +1,10 @@
 .todo-list-item {
   padding: 10px;
 
+  &.selected {
+    background: lightpink;
+  }
+
   .completed {
     text-decoration: line-through;
   }
@@ -18,11 +22,5 @@
     .delete-icon {
       display: inline-block;
     }
-  }
-}
-
-:host.selected {
- .todo-list-item {
-    background: lightpink;
   }
 }

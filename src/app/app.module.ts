@@ -11,6 +11,8 @@ import { ListItemComponent } from './list-item/list-item.component';
 import { TodoItemDetailsComponent } from './todo-item-details/todo-item-details.component';
 import { TodosService } from './todos.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NoItemSelectedComponent } from './no-item-selected/no-item-selected.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -20,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     CreateItemComponent,
     TodoListComponent,
     ListItemComponent,
-    TodoItemDetailsComponent
+    TodoItemDetailsComponent,
+    NoItemSelectedComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

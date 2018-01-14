@@ -6,10 +6,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
     <ul class="list-unstyled todo-list">
       <li *ngFor="let item of list">
         <app-list-item [item]="item"
-                       (selected)="selectItem(item)"
                        (completed)="setItemCompleted(item, $event)"
-                       (remove)="removeItem(item)"
-                       [ngClass]="{selected: selectedItemId === item.id}">
+                       (remove)="removeItem(item)">
         </app-list-item>
       </li>
     </ul>
@@ -18,8 +16,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TodoListComponent implements OnInit {
   @Input() list;
-  @Input() selectedItemId;
-  @Output() selected = new EventEmitter();
   @Output() completed = new EventEmitter();
   @Output() removed = new EventEmitter();
 
@@ -27,10 +23,6 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  selectItem(item) {
-    this.selected.emit(item);
   }
 
   setItemCompleted(item, completed) {

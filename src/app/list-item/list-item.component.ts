@@ -3,13 +3,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-list-item',
   template: `
-    <div class="inline-form todo-list-item">
+    <div class="inline-form todo-list-item" routerLinkActive="selected">
       <input type="checkbox"
              [checked]="item.completed"
              (change)="toggleCompleted($event)">
-      <a href="#"
+      <a [routerLink]="['./', item.id]"
          class="todo-list-item-title"
-         (click)="selectItem()"
          [ngClass]="{completed: item.completed}">
         {{ item.title }}
       </a>
@@ -21,7 +20,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ListItemComponent implements OnInit {
   @Input() item;
-  @Output() selected = new EventEmitter();
   @Output() completed = new EventEmitter();
   @Output() remove = new EventEmitter();
 
@@ -33,10 +31,6 @@ export class ListItemComponent implements OnInit {
 
   toggleCompleted(e) {
     this.completed.emit(e.target.checked);
-  }
-
-  selectItem() {
-    this.selected.emit(this.item);
   }
 
   removeItem() {
