@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TodoAppModule } from './features/todo-app/todo-app.module';
 import { CoreModule } from './core/core.module';
 
 
@@ -17,7 +16,6 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     HttpClientModule,
     CoreModule,
-    TodoAppModule,
     AppRoutingModule,
   ],
   providers: [],

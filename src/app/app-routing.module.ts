@@ -4,6 +4,7 @@ import { PageNotFoundComponent } from './core/components/page-not-found/page-not
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/todos' },
+  { path: 'todos', loadChildren: 'app/features/todo-app/todo-app.module#TodoAppModule' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

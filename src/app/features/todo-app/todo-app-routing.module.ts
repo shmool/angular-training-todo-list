@@ -6,7 +6,7 @@ import { TodoItemDetailsComponent } from './containers/todo-item-details/todo-it
 
 const routes: Routes = [
   {
-    path: 'todos',
+    path: '',
     component: TodoAppComponent,
     children: [
       { path: '', component: NoItemSelectedComponent },
