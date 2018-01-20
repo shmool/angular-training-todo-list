@@ -6,3 +6,29 @@ body {
 a {
   cursor: pointer;
 }
+
+.app-icon {
+  cursor: pointer;
+  display: inline-block;
+
+  &.delete-icon {
+    color: red;
+  }
+
+  &.plus-icon {
+    color: green;
+    top: 0;
+  }
+}
+
+.show-icon-on-hover {
+
+  .app-icon {
+    display: none;
+  }
+
+  &:hover .app-icon {
+    display: initial;
+  }
+}
+

@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-list-item',
   template: `
-    <div class="inline-form todo-list-item" routerLinkActive="selected">
+    <div class="inline-form todo-list-item show-icon-on-hover" routerLinkActive="selected">
       <input type="checkbox"
              [checked]="item.completed"
              (change)="toggleCompleted($event)">
@@ -12,7 +12,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
          [ngClass]="{completed: item.completed}">
         {{ item.title }}
       </a>
-      <div class="delete-icon glyphicon glyphicon-remove"
+      <div class="app-icon delete-icon glyphicon glyphicon-remove"
            (click)="removeItem()"></div>
     </div>
   `,

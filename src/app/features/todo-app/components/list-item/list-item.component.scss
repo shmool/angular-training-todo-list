@@ -12,16 +12,4 @@
   .todo-list-item-title {
     padding-left: 10px;
   }
-
-  .delete-icon {
-    display: none;
-    color: red;
-    cursor: pointer;
-  }
-
-  &:hover {
-    .delete-icon {
-      display: inline-block;
-    }
-  }
 }
