@@ -5,6 +5,11 @@
     background: lightpink;
   }
 
+  .todo-list-item-content {
+    position: relative;
+    display: inline-block;
+  }
+
   .completed {
     text-decoration: line-through;
   }

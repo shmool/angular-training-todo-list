@@ -13,12 +13,14 @@ import { EditItemComponent } from './components/edit-item/edit-item.component';
 import { EditItemReactiveComponent } from './components/edit-item/edit-item-reactive/edit-item-reactive.component';
 import { EditItemReactiveFbComponent } from './components/edit-item/edit-item-reactive-fb/edit-item-reactive-fb.component';
 import { EditItemTemplateDrivenComponent } from './components/edit-item/edit-item-template-driven/edit-item-template-driven.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
     TodoAppRoutingModule
   ],
   declarations: [
