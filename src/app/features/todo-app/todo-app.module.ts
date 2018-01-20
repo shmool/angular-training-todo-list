@@ -8,12 +8,16 @@ import { CreateItemComponent } from './components/create-item/create-item.compon
 import { TodoMainComponent } from './containers/todo-main/todo-main.component';
 import { TodoAppRoutingModule } from './todo-app-routing.module';
 import { TodosService } from './services/todos.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditItemComponent } from './components/edit-item/edit-item.component';
+import { EditItemReactiveComponent } from './components/edit-item/edit-item-reactive/edit-item-reactive.component';
+import { EditItemReactiveFbComponent } from './components/edit-item/edit-item-reactive-fb/edit-item-reactive-fb.component';
+import { EditItemTemplateDrivenComponent } from './components/edit-item/edit-item-template-driven/edit-item-template-driven.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     TodoAppRoutingModule
   ],
@@ -25,6 +29,9 @@ import { EditItemComponent } from './components/edit-item/edit-item.component';
     TodoItemDetailsComponent,
     NoItemSelectedComponent,
     EditItemComponent,
+    EditItemReactiveComponent,
+    EditItemReactiveFbComponent,
+    EditItemTemplateDrivenComponent,
   ],
   providers: [TodosService]
 })

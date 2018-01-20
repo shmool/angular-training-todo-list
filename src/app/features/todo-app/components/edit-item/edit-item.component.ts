@@ -1,61 +1,37 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-edit-item',
   template: `
-    <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+    <div>
+      <a (click)="type = 'templateDriven'" [ngClass]="{active: type === 'templateDriven'}">Template Driven</a> |
+      <a (click)="type = 'reactive'" [ngClass]="{active: type === 'reactive'}">Reactive</a> |
+      <a (click)="type = 'FormBuilder'" [ngClass]="{active: type === 'FormBuilder'}">Form Builder</a>
+    </div>
 
-      <div id="todo-details-group">
-        <div class="form-group">
-          <label>Title:
-            <input class="form-control" formControlName="title">
-          </label>
-        </div>
-        <div class="form-group">
-          <label>Description:
-            <textarea class="form-control" formControlName="description"></textarea>
-          </label>
-        </div>
-      </div>
+    <app-edit-item-template-driven [item]="item"
+                                   (submitForm)="submitForm.emit($event)"
+                                   (cancel)="cancel.emit($event)"
+                                   *ngIf="type === 'templateDriven'">
+    </app-edit-item-template-driven>
 
-      <div class="form-group">
-        <label>Due Date:
-          <input type="date" class="form-control" formControlName="dueDate">
-        </label>
-      </div>
+    <app-edit-item-reactive [item]="item"
+                            (submitForm)="submitForm.emit($event)"
+                            (cancel)="cancel.emit($event)"
+                            *ngIf="type === 'reactive'">
+    </app-edit-item-reactive>
 
-      <button class="btn btn-success" [disabled]="!todoForm.valid">Submit</button>
-      <button class="btn btn-warning" type="reset">Reset</button>
-    </form>
+    <app-edit-item-reactive-fb [item]="item"
+                               (submitForm)="submitForm.emit($event)"
+                               (cancel)="cancel.emit($event)"
+                               *ngIf="type === 'FormBuilder'">
+    </app-edit-item-reactive-fb>
   `,
   styleUrls: ['./edit-item.component.scss']
 })
-export class EditItemComponent implements OnInit {
-  @Input()
-  set item(value) {
-    this.createForm(value);
-  };
-
+export class EditItemComponent {
+  @Input() item;
   @Output() submitForm = new EventEmitter();
-  todoForm;
-
-  constructor() {
-  }
-
-  ngOnInit() {
-  }
-
-  createForm(item) {
-    this.todoForm = new FormGroup({
-      title: new FormControl(item.title, Validators.required),
-      description: new FormControl(item.description),
-      dueDate: new FormControl(item.dueDate),
-    });
-  }
-
-  onSubmit() {
-    this.submitForm.emit(this.todoForm.value);
-  }
-
+  @Output() cancel = new EventEmitter();
+  type = 'templateDriven';
 }

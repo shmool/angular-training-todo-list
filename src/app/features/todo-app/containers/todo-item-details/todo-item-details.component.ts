@@ -7,16 +7,20 @@ import { switchMap, tap } from 'rxjs/operators';
   selector: 'app-todo-item-details',
   template: `
     <div *ngIf="item$ | async as item">
+
       <app-edit-item *ngIf="edit; else displayItem" [item]="item"
-                     (submitForm)="onSubmit(item.id, $event)"></app-edit-item>
+                     (submitForm)="onSubmit(item.id, $event)"
+                     (cancel)="edit = false"></app-edit-item>
+
       <ng-template #displayItem>
         <button class="btn btn-primary" (click)="edit = true">Edit</button>
         <h3>{{ item.title }}</h3>
         <h4>id: {{ item.id }}</h4>
         <h4>completed: {{ item.completed || 'false' }}</h4>
         <h4>description: {{ item.description }}</h4>
-        <h4>due date: {{ item.dueDate }}</h4>
+        <h4>due date: {{ item.dueDate | date: 'dd-MM-yyyy' }}</h4>
       </ng-template>
+
     </div>
   `,
   styleUrls: ['./todo-item-details.component.scss']
