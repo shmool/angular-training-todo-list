@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TodoAppComponent } from './containers/todo-app/todo-app.component';
 import { NoItemSelectedComponent } from './containers/no-item-selected/no-item-selected.component';
 import { TodoItemDetailsComponent } from './containers/todo-item-details/todo-item-details.component';
+import { TodoMainComponent } from './containers/todo-main/todo-main.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: TodoAppComponent,
+    component: TodoMainComponent,
     children: [
       { path: '', component: NoItemSelectedComponent },
       { path: ':id', component: TodoItemDetailsComponent }

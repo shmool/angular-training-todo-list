@@ -3,7 +3,7 @@ import { TodosService } from '../../services/todos.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-todo-app',
+  selector: 'app-todo-main',
   template: `
     <h3>My Todo List</h3>
 
@@ -25,9 +25,9 @@ import { ActivatedRoute, Router } from '@angular/router';
       </div>
     </div>
   `,
-  styleUrls: ['./todo-app.component.scss']
+  styleUrls: ['./todo-main.component.scss']
 })
-export class TodoAppComponent implements OnInit {
+export class TodoMainComponent implements OnInit {
   todos$;
 
   constructor(
